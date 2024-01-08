@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3947312767",
+    "project_id": "climate-a9f90",
+    "storage_bucket": "climate-a9f90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3947312767:android:c9ed83d8115787f656f14a",
+        "android_client_info": {
+          "package_name": "com.bismillahwin.climate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbI7Hj9xLTvXwwHoQeQs4gLSVXcaJe0U8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
