@@ -55,7 +55,7 @@ Future signIn() async{
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Cli-mate telah menunggumu!',
+                  'Cli-mate telah menunggumu',
                   style: TextStyle(
                     fontSize: 17,
                   ),
