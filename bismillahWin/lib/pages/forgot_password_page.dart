@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -24,20 +23,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Future passwordReset(BuildContext context) async {
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailcontroller.text.trim());
-    } on FirebaseAuthException catch (e) {
-      _showSimpleDialog(e.toString());
-    }
-  }
-
-  Future _showSimpleDialog(String pesanCatch) async {
-    showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: Text(pesanCatch),
+          .sendPasswordResetEmail(
+            email: _emailcontroller.text.trim());
+      showDialog(
+        context: context, 
+        builder: (context){
+          return AlertDialog(
+            content: Text('Link untuk reset password telah dikirim ke email!'),
           );
-        });
+      });
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context, 
+        builder: (context){
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+      });
+    }
   }
 
   @override
@@ -84,9 +88,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   const SizedBox(height: 10),
                   
                   // Tombol reset password
-                  MaterialButton(onPressed: () => passwordReset(context),
-                  child: Text('Reset Password'),
-                  color: Color.fromARGB(255, 42, 105, 45),
+                  MaterialButton(
+                    onPressed: () => passwordReset(context),
+                    child: Text('Reset Password'),
+                    color: Color.fromARGB(255, 42, 105, 45),
                   
                   )
         ],

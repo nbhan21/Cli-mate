@@ -16,10 +16,21 @@ final _emailcontroller = TextEditingController();
 final _passwordcontroller = TextEditingController();
 
 Future signIn() async{
+ try{
   await FirebaseAuth.instance.signInWithEmailAndPassword(
     email: _emailcontroller.text.trim(), 
     password: _passwordcontroller.text.trim(),
     );
+ }on FirebaseAuthException catch (e){
+  showDialog(
+        context: context, 
+        builder: (context){
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        });
+ }
+  
 }
 
 
@@ -55,7 +66,7 @@ Future signIn() async{
                 ),
                 const SizedBox(height: 10),
                 const Text(
-                  'Cli-mate telah menunggumu',
+                  'Cli-mate telah menunggumu!',
                   style: TextStyle(
                     fontSize: 17,
                   ),

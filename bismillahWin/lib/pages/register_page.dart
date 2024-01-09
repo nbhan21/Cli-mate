@@ -26,12 +26,22 @@ final _confirmpasswordController = TextEditingController();
 
   Future signUp() async{
     if(passwordConfirmed()){
+      try{
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailcontroller.text.trim(), 
-      password: _passwordcontroller.text.trim(),
-    );
+      password: _passwordcontroller.text.trim());
+      }on FirebaseAuthException catch(e){
+        showDialog(
+        context: context, 
+        builder: (context){
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        });
+      }
     }
   }
+  
 
   bool passwordConfirmed() {
     if (_passwordcontroller.text.trim() == _confirmpasswordController.text.trim()){
