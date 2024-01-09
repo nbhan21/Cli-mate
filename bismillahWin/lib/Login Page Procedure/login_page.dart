@@ -1,4 +1,4 @@
-import 'package:climate/pages/forgot_password_page.dart';
+import 'package:climate/Login%20Page%20Procedure/forgot_password_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +44,11 @@ Future signIn() async{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Color.fromARGB(255, 42, 105, 45),
+      //   elevation: 0,
+      // ),
+
       backgroundColor: Color.fromARGB(255, 232, 232, 238),
       body: SafeArea(
         child: Center(
@@ -52,27 +57,30 @@ Future signIn() async{
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 
-                Icon(Icons.android, size: 100),
+                // Icon(Icons.android, size: 100),
           
-                SizedBox(height: 75), // ganti logo cli-mate
+                // SizedBox(height: 75), // ganti logo cli-mate
                 
                 // Selamat datang kembali
-                const Text(
-                  'Halo, Cli-MATES!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                  child: const Text(
+                    'Log in',
+                    style: TextStyle(
+                      fontFamily: 'PlusJakartaSans',
+                      fontSize: 32,
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Cli-mate telah menunggumu!',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
+                // const SizedBox(height: 10),
+                // const Text(
+                //   'Cli-mate telah menunggumu!',
+                //   style: TextStyle(
+                //     fontSize: 17,
+                //   ),
+                // ),
           
-                const SizedBox(height: 50),
+               
           
                 // textfield untuk email
                 Padding(
@@ -88,9 +96,9 @@ Future signIn() async{
                         borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
-                          hintText: 'Masukkan Email',
+                          hintText: 'Email', 
                           fillColor: Color.fromARGB(255, 255, 255, 255),
-                          filled: true,
+                          filled: true
                       ),
                     ),
                   ),
@@ -113,7 +121,7 @@ Future signIn() async{
                           borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
-                            hintText: 'Masukkan Password',
+                            hintText: 'Password',
                             fillColor: Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
@@ -137,8 +145,9 @@ Future signIn() async{
                             ),
                             );
                           },
-                          child: Text('Lupa password?', 
+                          child: Text('Forgot Password?', 
                           style: TextStyle(
+                          fontFamily: 'PlusJakartaSans',
                           color: Color.fromARGB(255, 42, 105, 45),
                           fontWeight: FontWeight.bold,
                                               ),
@@ -150,7 +159,7 @@ Future signIn() async{
 
           
                 // tombol sign in
-                const SizedBox(height: 10),
+                const SizedBox(height: 350),
           
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -164,8 +173,9 @@ Future signIn() async{
                         ),
                       child: const Center(
                         child: Text(
-                          'Sign In',
+                          'Log In',
                           style: TextStyle(
+                            fontFamily: 'PlusJakartaSans',
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -182,11 +192,11 @@ Future signIn() async{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Belum memiliki akun?'),
+                    Text("Don't have an account?"),
                     GestureDetector(
                       onTap: widget.showRegisterPage,
                       child: const Text(
-                        ' Register', 
+                        ' Sign Up', 
                       style: TextStyle(
                         color: Color.fromARGB(255, 42, 105, 45),
                         fontWeight: FontWeight.bold,

@@ -1,5 +1,5 @@
-import 'package:climate/auth/auth_page.dart';
-import 'package:climate/pages/home_page.dart';
+import 'package:climate/Pages/login_page_home.dart';
+import 'package:climate/Login%20Page%20Procedure/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
             return HomePage();
 
           }else{
-            return AuthPage();
+            return loginPageHome();
           }
         }
         ),

@@ -1,5 +1,7 @@
-import 'package:climate/pages/login_page.dart';
-import 'package:climate/pages/register_page.dart';
+
+
+import 'package:climate/Login%20Page%20Procedure/login_page.dart';
+import 'package:climate/Login%20Page%20Procedure/register_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
