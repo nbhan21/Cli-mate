@@ -1,4 +1,5 @@
 import 'package:climate/Login%20Page%20Procedure/forgot_password_page.dart';
+import 'package:climate/Login%20Page%20Procedure/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,22 +16,48 @@ class _LoginpageState extends State<Loginpage> {
 final _emailcontroller = TextEditingController();
 final _passwordcontroller = TextEditingController();
 
-Future signIn() async{
- try{
-  await FirebaseAuth.instance.signInWithEmailAndPassword(
-    email: _emailcontroller.text.trim(), 
-    password: _passwordcontroller.text.trim(),
-    );
- }on FirebaseAuthException catch (e){
+Future signIn() async {
+  // Show loading indicator
   showDialog(
-        context: context, 
-        builder: (context){
-          return AlertDialog(
-            content: Text(e.message.toString()),
-          );
-        });
- }
-  
+    context: context,
+    barrierDismissible: false, // Prevent user interaction
+    builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+  );
+
+  try {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailcontroller.text.trim(),
+      password: _passwordcontroller.text.trim(),
+    );
+
+    // Dismiss the loading indicator before navigating
+    Navigator.of(context).pop();
+
+    // Navigate to HomePage after successful sign-in
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => const HomePage()
+      )
+    );
+
+  } on FirebaseAuthException catch (e) {
+    // Dismiss loading indicator before showing error
+    Navigator.of(context).pop();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(e.message.toString()),
+        );
+      },
+    );
+  }
 }
 
 
@@ -65,7 +92,7 @@ Future signIn() async{
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
                   child: const Text(
-                    'Log in',
+                    'Log In',
                     style: TextStyle(
                       fontFamily: 'PlusJakartaSans',
                       fontSize: 32,
@@ -202,9 +229,10 @@ Future signIn() async{
                         fontWeight: FontWeight.bold,
                       ),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
+                
               ],
             ),
           ),

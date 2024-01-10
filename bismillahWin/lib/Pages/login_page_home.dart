@@ -8,9 +8,9 @@ class loginPageHome extends StatefulWidget {
   State<loginPageHome> createState() => _loginPageHomeState();
 }
 
-void SignIn(){
+// void SignIn(){
 
-}
+// }
 
 class _loginPageHomeState extends State<loginPageHome> {
   @override
@@ -97,13 +97,12 @@ class _loginPageHomeState extends State<loginPageHome> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: GestureDetector(
                     onTap: (){
-                            Navigator.push(context, MaterialPageRoute(
+                          Navigator.push(context, MaterialPageRoute(
                               builder: (context){
                               return const AuthPage();
-                              }
-                            ),
-                            );
-                          },
+                            }),
+                          );
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(

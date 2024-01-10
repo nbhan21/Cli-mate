@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'home_page.dart';
 
 class Registerpage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -15,22 +18,58 @@ class _RegisterpageState extends State<Registerpage> {
 final _emailcontroller = TextEditingController();
 final _passwordcontroller = TextEditingController();
 final _confirmpasswordController = TextEditingController();
+final _usernameController = TextEditingController();
+
 
 @override
   void dispose() {
     _emailcontroller.dispose();
     _passwordcontroller.dispose();
     _confirmpasswordController.dispose();
+    _usernameController.dispose();
     super.dispose();
   }
 
   Future signUp() async{
+    // Show loading indicator
+  showDialog(
+    context: context,
+    barrierDismissible: false, // Prevent user interaction
+    builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+  );
+
     if(passwordConfirmed()){
       try{
+      // fungsi untuk membuat user baru
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailcontroller.text.trim(), 
-      password: _passwordcontroller.text.trim());
+      password: _passwordcontroller.text.trim(),
+      );
+
+      // // menambahkan detail user
+      addUserDetails(
+        _usernameController.text.trim(),
+      );
+
+      // Dismiss the loading indicator before navigating
+      Navigator.of(context).pop();
+
+      // Navigate to HomePage after successful sign-in
+      Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => const HomePage()
+      )
+      );
+
       }on FirebaseAuthException catch(e){
+        // Dismiss loading indicator before showing error
+        Navigator.of(context).pop();
+        
         showDialog(
         context: context, 
         builder: (context){
@@ -40,6 +79,12 @@ final _confirmpasswordController = TextEditingController();
         });
       }
     }
+  }
+
+  Future addUserDetails(String username) async {
+    await FirebaseFirestore.instance.collection('username').add({
+      'username': username,
+    });
   }
   
 
@@ -61,31 +106,46 @@ final _confirmpasswordController = TextEditingController();
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.android, size: 100),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                  child: const Text(
+                    'Sign Up',
+                    style: TextStyle(
+                      fontFamily: 'PlusJakartaSans',
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
           
-                SizedBox(height: 75), // ganti logo cli-mate
+                // const SizedBox(height: 50),
+
+                // textfield untuk username
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                        borderRadius: BorderRadius.circular(12) 
+                      ),
+                          hintText: 'Username',
+                          fillColor: Color.fromARGB(255, 255, 255, 255),
+                          filled: true,
+                      ),
+                    ),
+                  ),
+              
+          
+        
                 
-                // Selamat datang kembali
-                const Text(
-                  //'Jadilah bagian dari CLI-MATES!',
-                  'Register Now!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  //'Isi form registrasi dibawah',
-                  'Jadilah bagian dari Cli-MATES!',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-          
-                const SizedBox(height: 50),
           
                 // textfield untuk email
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
@@ -99,7 +159,7 @@ final _confirmpasswordController = TextEditingController();
                         borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
-                          hintText: 'Masukkan Email',
+                          hintText: 'Email',
                           fillColor: Color.fromARGB(255, 255, 255, 255),
                           filled: true,
                       ),
@@ -124,7 +184,7 @@ final _confirmpasswordController = TextEditingController();
                           borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
-                            hintText: 'Masukkan Password',
+                            hintText: 'Password',
                             fillColor: Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
@@ -148,7 +208,7 @@ final _confirmpasswordController = TextEditingController();
                           borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
-                            hintText: 'Konfirmasi Password',
+                            hintText: 'Confirm Password',
                             fillColor: Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
@@ -157,7 +217,7 @@ final _confirmpasswordController = TextEditingController();
 
           
                 // tombol sign in
-                const SizedBox(height: 10),
+                const SizedBox(height: 240),
           
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -189,7 +249,7 @@ final _confirmpasswordController = TextEditingController();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Sudah memiliki akun?'),
+                    Text('Back to'),
                     GestureDetector(
                       onTap: widget.showLoginPage,
                       child: const Text(
@@ -201,7 +261,8 @@ final _confirmpasswordController = TextEditingController();
                       ),
                     )
                   ],
-                )
+                ),
+
               ],
             ),
           ),
