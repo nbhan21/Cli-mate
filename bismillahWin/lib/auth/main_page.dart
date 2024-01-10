@@ -1,5 +1,5 @@
 import 'package:climate/Pages/login_page_home.dart';
-import 'package:climate/Login%20Page%20Procedure/home_page.dart';
+import 'package:climate/Pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +13,10 @@ class MainPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           if (snapshot.hasData){
-            return HomePage();
+            return const HomePage();
 
           }else{
-            return loginPageHome();
+            return const loginPageHome();
           }
         }
         ),

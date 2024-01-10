@@ -30,6 +30,8 @@
 //   }
 // }
 
+// ignore_for_file: avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Berhasil masuk sebagai: ' + (user?.email ?? '')), // Handle potential null
+            Text('Berhasil masuk sebagai: ${user?.email ?? ''}'), // Handle potential null
             MaterialButton(
               onPressed: () async {
                 try {
@@ -61,8 +63,8 @@ class _HomePageState extends State<HomePage> {
                   print(e); // Handle errors if needed
                 }
               },
-              color: Color.fromARGB(255, 42, 105, 45),
-              child: Text('Keluar'),
+              color: const Color.fromARGB(255, 42, 105, 45),
+              child: const Text('Keluar'),
             )
           ],
         ),

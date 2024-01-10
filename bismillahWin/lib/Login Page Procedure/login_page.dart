@@ -1,5 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:climate/Login%20Page%20Procedure/forgot_password_page.dart';
-import 'package:climate/Login%20Page%20Procedure/home_page.dart';
+import 'package:climate/Pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +78,7 @@ Future signIn() async {
       //   elevation: 0,
       // ),
 
-      backgroundColor: Color.fromARGB(255, 232, 232, 238),
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -90,7 +92,7 @@ Future signIn() async {
                 
                 // Selamat datang kembali
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 60),
                   child: const Text(
                     'Log In',
                     style: TextStyle(
@@ -116,15 +118,15 @@ Future signIn() async {
                     controller: _emailcontroller,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
                           hintText: 'Email', 
-                          fillColor: Color.fromARGB(255, 255, 255, 255),
+                          fillColor: const Color.fromARGB(255, 255, 255, 255),
                           filled: true
                       ),
                     ),
@@ -141,15 +143,15 @@ Future signIn() async {
                       controller: _passwordcontroller,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
                             hintText: 'Password',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor: const Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
                       ),
@@ -172,7 +174,7 @@ Future signIn() async {
                             ),
                             );
                           },
-                          child: Text('Forgot Password?', 
+                          child: const Text('Forgot Password?', 
                           style: TextStyle(
                           fontFamily: 'PlusJakartaSans',
                           color: Color.fromARGB(255, 42, 105, 45),
@@ -219,7 +221,7 @@ Future signIn() async {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account?", 
+                    const Text("Don't have an account?", 
                     style: TextStyle(
                       fontFamily: 'PlusJakartaSans',
                     ),),

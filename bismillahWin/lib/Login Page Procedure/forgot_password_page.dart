@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +30,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       showDialog(
         context: context, 
         builder: (context){
-          return AlertDialog(
+          return const AlertDialog(
             content: Text('Link untuk reset password telah dikirim ke email!'),
           );
       });
@@ -48,15 +50,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 42, 105, 45),
+        backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 0,
       ),
       
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: Text('Masukkan email anda yang telah terdaftar!',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 15),
@@ -71,15 +73,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     controller: _emailcontroller,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
                           hintText: 'Masukkan Email',
-                          fillColor: Color.fromARGB(255, 255, 255, 255),
+                          fillColor: const Color.fromARGB(255, 255, 255, 255),
                           filled: true,
                       ),
                     ),
@@ -90,8 +92,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   // Tombol reset password
                   MaterialButton(
                     onPressed: () => passwordReset(context),
-                    child: Text('Reset Password'),
-                    color: Color.fromARGB(255, 42, 105, 45),
+                    color: const Color.fromARGB(255, 42, 105, 45),
+                    child: const Text('Reset Password'),
                   
                   )
         ],

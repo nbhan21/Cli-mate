@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:climate/auth/auth_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,7 @@ class _loginPageHomeState extends State<loginPageHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 232, 232, 238),
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -24,13 +26,13 @@ class _loginPageHomeState extends State<loginPageHome> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 
-                Container(
+                SizedBox(
                   height: 200,
                   child: Image.asset(
                     'icons/Logo.png', 
                     )),
           
-                SizedBox(height: 75), // ganti logo cli-mate
+                const SizedBox(height: 75), // ganti logo cli-mate
                 
                 /*
                 Padding(
@@ -56,9 +58,9 @@ class _loginPageHomeState extends State<loginPageHome> {
 
                 // Welcome
                 Container(
-                  margin:  EdgeInsets.fromLTRB(0, 0, 180, 5),
+                  margin:  const EdgeInsets.fromLTRB(0, 0, 180, 5),
                   child:  
-                  Text(
+                  const Text(
                     'Welcome!',
                     textAlign:  TextAlign.center,
                     style:  TextStyle (
@@ -73,9 +75,9 @@ class _loginPageHomeState extends State<loginPageHome> {
 
                 // Welcome description
                 Container(
-                  margin:  EdgeInsets.fromLTRB(0, 0, 20, 0 ),
+                  margin:  const EdgeInsets.fromLTRB(0, 0, 20, 0 ),
                   child:  
-                  Text(
+                  const Text(
                     'We’re your helping buddy for any climate needs',
                     style:  TextStyle (
                       fontSize:  15,

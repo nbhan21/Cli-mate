@@ -1,8 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import '../Pages/home_page.dart';
 
 class Registerpage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -99,7 +101,7 @@ final _usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 232, 232, 238),
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -107,7 +109,7 @@ final _usernameController = TextEditingController();
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 60),
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(
@@ -126,15 +128,15 @@ final _usernameController = TextEditingController();
                     controller: _usernameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
                           hintText: 'Username',
-                          fillColor: Color.fromARGB(255, 255, 255, 255),
+                          fillColor: const Color.fromARGB(255, 255, 255, 255),
                           filled: true,
                       ),
                     ),
@@ -152,15 +154,15 @@ final _usernameController = TextEditingController();
                     controller: _emailcontroller,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
                           hintText: 'Email',
-                          fillColor: Color.fromARGB(255, 255, 255, 255),
+                          fillColor: const Color.fromARGB(255, 255, 255, 255),
                           filled: true,
                       ),
                     ),
@@ -177,15 +179,15 @@ final _usernameController = TextEditingController();
                       controller: _passwordcontroller,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
                             hintText: 'Password',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor: const Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
                       ),
@@ -201,15 +203,15 @@ final _usernameController = TextEditingController();
                       controller: _confirmpasswordController,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 232, 232, 238)),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                           borderRadius: BorderRadius.circular(12) 
                         ),
                             hintText: 'Confirm Password',
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor: const Color.fromARGB(255, 255, 255, 255),
                             filled: true,
                         ),
                       ),
@@ -236,7 +238,7 @@ final _usernameController = TextEditingController();
                             color: Colors.white,
                             fontFamily: 'PlusJakartaSans',
                             fontWeight: FontWeight.bold,
-                            fontSize: 15,
+                             fontSize: 15,
                             ),
                           ),
                       ),
@@ -250,7 +252,7 @@ final _usernameController = TextEditingController();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Back to',
+                    const Text('Back to',
                     style: TextStyle(
                       fontFamily: 'PlusJakartaSans',
                     ),),
