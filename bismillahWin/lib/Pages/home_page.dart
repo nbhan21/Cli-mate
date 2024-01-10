@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Berhasil masuk sebagai: ${user?.email ?? ''}'), // Handle potential null
+            Text('Successfully Logged In As: ${user?.email ?? ''}'), // Handle potential null
             MaterialButton(
               onPressed: () async {
                 try {
