@@ -219,12 +219,16 @@ Future signIn() async {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account?"),
+                    Text("Don't have an account?", 
+                    style: TextStyle(
+                      fontFamily: 'PlusJakartaSans',
+                    ),),
                     GestureDetector(
                       onTap: widget.showRegisterPage,
                       child: const Text(
                         ' Sign Up', 
                       style: TextStyle(
+                        fontFamily: 'PlusJakartaSans',
                         color: Color.fromARGB(255, 42, 105, 45),
                         fontWeight: FontWeight.bold,
                       ),

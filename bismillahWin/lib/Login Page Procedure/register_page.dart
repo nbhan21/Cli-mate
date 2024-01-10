@@ -234,6 +234,7 @@ final _usernameController = TextEditingController();
                           'Sign Up',
                           style: TextStyle(
                             color: Colors.white,
+                            fontFamily: 'PlusJakartaSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                             ),
@@ -249,13 +250,17 @@ final _usernameController = TextEditingController();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Back to'),
+                    Text('Back to',
+                    style: TextStyle(
+                      fontFamily: 'PlusJakartaSans',
+                    ),),
                     GestureDetector(
                       onTap: widget.showLoginPage,
                       child: const Text(
                         ' Login', 
                       style: TextStyle(
                         color: Color.fromARGB(255, 42, 105, 45),
+                        fontFamily: 'PlusJakartaSans',
                         fontWeight: FontWeight.bold,
                       ),
                       ),
