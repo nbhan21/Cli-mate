@@ -76,7 +76,7 @@ final _usernameController = TextEditingController();
         context: context, 
         builder: (context){
           return AlertDialog(
-            content: Text(e.message.toString()),
+            content: Text(e.message.toString(), style: const TextStyle(fontFamily: 'PlusJakartaSans', ),),
           );
         });
       }
@@ -141,10 +141,6 @@ final _usernameController = TextEditingController();
                       ),
                     ),
                   ),
-              
-          
-        
-                
           
                 // textfield untuk email
                 const SizedBox(height: 10),
@@ -252,7 +248,7 @@ final _usernameController = TextEditingController();
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Back to',
+                    const Text('Already have an account?',
                     style: TextStyle(
                       fontFamily: 'PlusJakartaSans',
                     ),),

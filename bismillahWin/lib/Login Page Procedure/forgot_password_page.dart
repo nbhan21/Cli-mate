@@ -31,7 +31,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         context: context, 
         builder: (context){
           return const AlertDialog(
-            content: Text('Link untuk reset password telah dikirim ke email!'),
+            content: Text('Password reset link has been sent to your email!', 
+            style: TextStyle(
+              fontFamily: 'PlusJakartaSans', 
+            ),),
           );
       });
     } on FirebaseAuthException catch (e) {
@@ -40,7 +43,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         context: context, 
         builder: (context){
           return AlertDialog(
-            content: Text(e.message.toString()),
+            content: Text(e.message.toString(), 
+            style: const TextStyle(
+              fontFamily: 'PlusJakartaSans', 
+            ),),
           );
       });
     }
@@ -59,9 +65,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text('Masukkan email anda yang telah terdaftar!',
+            child: Text('Enter your registered email address',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(
+              fontFamily: 'PlusJakartaSans', 
+              fontSize: 15),
             ),
           ),
           const SizedBox(height: 10),
@@ -80,7 +88,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         borderSide: const BorderSide(color: Color.fromARGB(255, 42, 105, 45)),
                         borderRadius: BorderRadius.circular(12) 
                       ),
-                          hintText: 'Masukkan Email',
+                          hintText: 'Email',
                           fillColor: const Color.fromARGB(255, 255, 255, 255),
                           filled: true,
                       ),
@@ -93,7 +101,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   MaterialButton(
                     onPressed: () => passwordReset(context),
                     color: const Color.fromARGB(255, 42, 105, 45),
-                    child: const Text('Reset Password'),
+                    child: const Text('Reset Password',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'PlusJakartaSans', 
+                    ),),
                   
                   )
         ],
