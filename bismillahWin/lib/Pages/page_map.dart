@@ -18,9 +18,9 @@ class _pageMapState extends State<pageMap> {
               bottomRight: Radius.circular(10),)
           ),
         toolbarHeight: 75,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 10,
-        shadowColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
       ),
 
       body: const Column(
