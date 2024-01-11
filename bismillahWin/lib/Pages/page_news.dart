@@ -12,6 +12,8 @@ class _pageNewsState extends State<pageNews> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
+      
+      //app
       appBar: AppBar(
         automaticallyImplyLeading: false,  
         shape: const RoundedRectangleBorder(
@@ -20,6 +22,8 @@ class _pageNewsState extends State<pageNews> {
             bottomRight: Radius.circular(10),)
         ),
         toolbarHeight: 75,
+        // backgroundColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 10,
       ), 

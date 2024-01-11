@@ -22,6 +22,7 @@ class _pageProfileState extends State<pageProfile> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
+        // tulisan Log Out
         title: Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
           child: Text(
@@ -31,6 +32,8 @@ class _pageProfileState extends State<pageProfile> {
             ),
           ),
         ),
+
+        //Button Log Out
         leading: IconButton(
           icon: Icon(Icons.logout, color: Colors.white),
           onPressed: () async {
@@ -113,7 +116,7 @@ class _pageProfileState extends State<pageProfile> {
                 //user name
                 textBox(
                   text: userData['username'],
-                  sectionName: 'bio',
+                  sectionName: 'Username',
                   onPressed: () => editField('username'),
                 ),
 
