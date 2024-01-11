@@ -1,9 +1,23 @@
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin'
     id 'com.google.gms.google-services'
 }
+
+android {
+    compileSdkVersion flutter.compileSdkVersion
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin' 
+    }
+
+    defaultConfig {
+        minSdkVersion flutter.minSdkVersion 
+        targetSdkVersion flutter.targetSdkVersion
+    }
+}
+
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
