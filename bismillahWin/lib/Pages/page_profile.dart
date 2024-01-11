@@ -65,6 +65,7 @@ class _pageProfileState extends State<pageProfile> {
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 10,
       ),
+      
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
             .collection("users")
