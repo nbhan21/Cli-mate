@@ -65,13 +65,13 @@ class _HomePageState extends State<HomePage> {
   // Pages
   final List <Widget> _pages = [
     //Page berita
-    pageNews(),
+    const pageNews(),
 
     //Page map
-    pageMap(),
+    const pageMap(),
 
     //Page profile
-    pageProfile(),
+    const pageProfile(),
   ];
 
   @override
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
       //   backgroundColor: const Color.fromARGB(255, 42, 105, 45),
       //   elevation: 10,
       // ),
-
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       bottomNavigationBar: bottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),

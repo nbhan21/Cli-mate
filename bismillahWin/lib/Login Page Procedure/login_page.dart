@@ -55,7 +55,7 @@ Future signIn() async {
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: Text(e.message.toString(), style: TextStyle(fontFamily: 'PlusJakartaSans', ),),
+          content: Text(e.message.toString(), style: const TextStyle(fontFamily: 'PlusJakartaSans', ),),
         );
       },
     );

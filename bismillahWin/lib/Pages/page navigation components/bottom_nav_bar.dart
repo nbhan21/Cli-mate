@@ -18,14 +18,14 @@ class bottomNavBar extends StatelessWidget {
           
         child: GNav(
           onTabChange: (value) => onTabChange!(value),
-          backgroundColor: Color.fromARGB(255, 42, 105, 45),
+          backgroundColor: const Color.fromARGB(255, 42, 105, 45),
           color: Colors.white,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           activeColor: Colors.white,
-          tabBackgroundColor: Color.fromARGB(255, 53, 129, 56),
+          tabBackgroundColor: const Color.fromARGB(255, 53, 129, 56),
           gap: 5,
-          padding: EdgeInsets.all(15),
-          tabs: [
+          padding: const EdgeInsets.all(15),
+          tabs: const [
             GButton(
               icon: Icons.newspaper,
               text: 'News',

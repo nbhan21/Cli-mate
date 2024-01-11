@@ -11,12 +11,14 @@ class _pageNewsState extends State<pageNews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
-         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(10), 
-              bottomRight: Radius.circular(10),)
-          ),
+        automaticallyImplyLeading: false,  
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10), 
+            bottomRight: Radius.circular(10),)
+        ),
         toolbarHeight: 75,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 10,

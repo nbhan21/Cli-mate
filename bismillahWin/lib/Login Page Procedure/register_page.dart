@@ -83,10 +83,17 @@ final _usernameController = TextEditingController();
     }
   }
 
-  Future addUserDetails(String username) async {
-    await FirebaseFirestore.instance.collection('username').add({
+  Future<void> addUserDetails(String username) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+    if (user!= null){
+    await FirebaseFirestore.instance.collection('users').
+    doc(user.email).
+    set({
       'username': username,
+      'bio': 'No bio',
     });
+  }
   }
   
 

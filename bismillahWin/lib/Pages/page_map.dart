@@ -11,7 +11,9 @@ class _pageMapState extends State<pageMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
+        automaticallyImplyLeading: false,  
          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10), 
