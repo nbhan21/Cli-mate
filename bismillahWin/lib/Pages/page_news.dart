@@ -31,13 +31,14 @@ class _pageNewsState extends State<pageNews> {
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text('Nanti jadi page buat nunjukkin berita',
+          Center( //nanti ini diganti lagi
+            //padding: EdgeInsets.symmetric(horizontal: 100.0),
+            child: Text('Coming Soon',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'PlusJakartaSans', 
-              fontSize: 15),
+              fontSize: 28,
+              fontWeight: FontWeight.w700),
             ),
           ),
         ]

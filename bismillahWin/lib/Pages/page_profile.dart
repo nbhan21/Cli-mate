@@ -195,6 +195,20 @@ class _pageProfileState extends State<pageProfile> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Center(
+                  //padding: const EdgeInsets.only(left: 25.0),
+                  child: Text(
+                    'Coming Soon', 
+                      style: TextStyle(
+                        fontFamily: 'PlusJakartaSans',
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700
+                      ),
+                  ),)
               ],
             );
           } // jika error maka return error

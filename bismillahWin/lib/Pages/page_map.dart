@@ -28,13 +28,14 @@ class _pageMapState extends State<pageMap> {
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text('Nanti jadi page buat nunjukkin map',
+          Center( //ini nanti diganti lagi
+            //padding: EdgeInsets.symmetric(horizontal: 25.0),
+            child: Text('Coming Soon',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'PlusJakartaSans', 
-              fontSize: 15),
+              fontSize: 28,
+              fontWeight: FontWeight.w700),
             ),
           ),
         ]

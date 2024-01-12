@@ -66,7 +66,7 @@ class _loginPageHomeState extends State<loginPageHome> {
                     style:  TextStyle (
                       fontSize:  36,
                       fontFamily: 'PlusJakartaSans', 
-                      fontWeight:  FontWeight.w500,
+                      fontWeight:  FontWeight.w600,
                       height:  1.26,
                       color:  Color(0xff000000),
                     ),
