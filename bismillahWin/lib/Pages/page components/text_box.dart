@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class textBox extends StatelessWidget {
@@ -32,7 +31,7 @@ class textBox extends StatelessWidget {
                 fontFamily: 'PlusJakartaFont',
               ),),
               IconButton(
-                onPressed: (){}, 
+                onPressed: onPressed, 
                 icon: Icon(Icons.settings,
                 color: Colors.grey[600],))
             ],

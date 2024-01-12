@@ -14,17 +14,64 @@ class pageProfile extends StatefulWidget {
 class _pageProfileState extends State<pageProfile> {
   // Get user data within the build method
   final currentUser = FirebaseAuth.instance.currentUser!;
+  // Get all user data
+  final usersCollection = FirebaseFirestore.instance.collection("users");
 
-  Future<void> editField(String field) async {}
+  // untuk mengedit data user
+  Future editField(String field) async {
+    String newValue = "";
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Color.fromARGB(255, 232, 232, 238),
+        title: Text("Edit $field",
+            style: TextStyle(fontFamily: 'PlusJakartaSans')),
+        content: TextField(
+          autofocus: true,
+          style: TextStyle(fontFamily: 'PlusJakartaSans'),
+          decoration: InputDecoration(
+              hintText: "New $field",
+              hintStyle: TextStyle(fontFamily: 'PlusJakartaSans')),
+              onChanged: (value) {
+                newValue = value;
+              },
+        ),
+        actions: [
+          // Tombol untuk cancel
+          TextButton(
+            onPressed: ()=>Navigator.pop(context), 
+            child: Text('Cancel',
+            style: TextStyle(fontFamily: 'PlusJakartaSans'),
+            ),
+          ),
+
+          // Tombol untuk save
+          TextButton(
+            onPressed: ()=>Navigator.of(context).pop(newValue), 
+            child: Text('Save',
+            style: TextStyle(fontFamily: 'PlusJakartaSans'),
+            ),
+          ),
+        ],
+      ),
+    );
+    
+    // mengatur firestore
+    if (newValue.trim().length>0){
+      //hanya update firestore jika ada value baru
+      await usersCollection.doc(currentUser.email).update({field: newValue});
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
-        // tulisan Log Out
+        // title log out
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+          padding: const EdgeInsets.only(bottom: 4.0),
           child: Text(
             'Log out',
             style: TextStyle(
@@ -34,28 +81,33 @@ class _pageProfileState extends State<pageProfile> {
         ),
 
         //Button Log Out
-        leading: IconButton(
-          icon: Icon(Icons.logout, color: Colors.white),
-          onPressed: () async {
-            showDialog(
-              context: context,
-              barrierDismissible: false, // Prevent user interaction
-              builder: (context) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            );
-            await FirebaseAuth.instance.signOut();
-
-            // Dismiss the loading indicator before navigating
-            Navigator.of(context).pop();
-
-            // Navigate to HomePage after successful sign-in
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const loginPageHome()));
-          },
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 30.0),
+          child: IconButton(
+            icon: Icon(Icons.logout, color: Colors.white),
+            onPressed: () async {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (context) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+              await FirebaseAuth.instance.signOut();
+        
+              // Dismiss the loading indicator before navigating
+              Navigator.of(context).pop();
+        
+              // Navigate to loginPageHome after successful log out
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const loginPageHome()));
+            },
+          ),
         ),
+
+        // Custom untuk AppBar
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(10),
@@ -65,14 +117,15 @@ class _pageProfileState extends State<pageProfile> {
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
         elevation: 10,
       ),
-      
+
+      //mendapatkan data user dari firebase
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
             .collection("users")
             .doc(currentUser.email)
             .snapshots(),
         builder: (context, snapshot) {
-          //mendapatkan data user dari firebase
+          // jika user memiliki data, maka akan menampilkan data user
           if (snapshot.hasData) {
             final userData = snapshot.data!.data() as Map<String, dynamic>;
 
@@ -128,7 +181,7 @@ class _pageProfileState extends State<pageProfile> {
                   onPressed: () => editField('bio'),
                 ),
 
-                //contribution history user
+                //histori kontribusi dari user
                 const SizedBox(
                   height: 50,
                 ),
@@ -144,12 +197,14 @@ class _pageProfileState extends State<pageProfile> {
                 ),
               ],
             );
-          }else if (snapshot.hasError){
+          } // jika error maka return error
+          else if (snapshot.hasError) {
             return Center(
               child: Text('Error${snapshot.error}'),
             );
           }
 
+          //return loading
           return const Center(
             child: CircularProgressIndicator(),
           );
