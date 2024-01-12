@@ -11,7 +11,22 @@ Cli-mate sebagai aplikasi mobile hadir menjadi solusi inovatif untuk mencegah pe
 
 ## Screenshot
 1. Landing page
+   
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/landing_page.png" width="100">
+   
 2. Login page
+
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(1).png" width="100">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(2).png" width="100">
+   
 3. Register Page
-4. Forgot password page
-5. Home page (Page news, Page map, Page profile)
+
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page(2).png" width="100">
+   
+5. Forgot password page
+  
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/forgot%20password_page.png" width="100">
+   
+6. Home page (Page news, Page map, Page profile)
+   
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/home%20page%20-%20news_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/map_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/profile_page.png" width="100">
