@@ -10,6 +10,7 @@ Cli-mate sebagai aplikasi mobile hadir menjadi solusi inovatif untuk mencegah pe
 4. Octavia Dwi Erwanti - Hustler
 
 ## Screenshot
+### FrontEnd
 1. Landing page
    
    <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/landing_page.png" width="100">
@@ -30,3 +31,8 @@ Cli-mate sebagai aplikasi mobile hadir menjadi solusi inovatif untuk mencegah pe
 6. Home page (Page news, Page map, Page profile)
    
    <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/home%20page%20-%20news_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/map_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/profile_page.png" width="100">
+
+### BackEnd
+1. auth using firebase
+
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/firebase.jpg" width="600">
