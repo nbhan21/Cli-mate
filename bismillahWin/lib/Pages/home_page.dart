@@ -1,6 +1,6 @@
 
 import 'package:climate/Pages/page%20navigation%20components/bottom_nav_bar.dart';
-import 'package:climate/Pages/page_map.dart';
+import 'package:climate/Pages/page_climate.dart';
 import 'package:climate/Pages/page_news.dart';
 import 'package:climate/Pages/page_profile.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
     const pageNews(),
 
     //Page map
-    const pageMap(),
+    const pageClimate(),
 
     //Page profile
     const pageProfile(),

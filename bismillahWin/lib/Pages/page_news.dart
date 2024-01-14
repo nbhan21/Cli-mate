@@ -28,7 +28,7 @@ class _pageNewsState extends State<pageNews> {
         elevation: 10,
       ), 
 
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center( //nanti ini diganti lagi

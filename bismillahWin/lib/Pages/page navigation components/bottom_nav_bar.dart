@@ -32,7 +32,7 @@ class bottomNavBar extends StatelessWidget {
               ),
             GButton(
               icon: Icons.map,
-              text: 'Map',
+              text: 'Cli-mate',
               ),
             GButton(
               icon: Icons.person,
