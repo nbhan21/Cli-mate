@@ -76,6 +76,7 @@ class _pageProfileState extends State<pageProfile> {
             'Log out',
             style: TextStyle(
               fontFamily: 'PlusJakartaSans',
+              color: Colors.white,
             ),
           ),
         ),

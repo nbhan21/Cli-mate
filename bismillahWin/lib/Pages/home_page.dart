@@ -88,6 +88,7 @@ class _HomePageState extends State<HomePage> {
       //   elevation: 10,
       // ),
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
+      // backgroundColor: Colors.transparent,
       bottomNavigationBar: bottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),

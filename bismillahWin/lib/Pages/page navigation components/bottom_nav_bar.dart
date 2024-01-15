@@ -11,7 +11,7 @@ class bottomNavBar extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 25.0,
-          vertical: 25.0,
+          vertical: 30.0,
           ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(25.0),
@@ -20,10 +20,10 @@ class bottomNavBar extends StatelessWidget {
           onTabChange: (value) => onTabChange!(value),
           backgroundColor: const Color.fromARGB(255, 42, 105, 45),
           color: Colors.white,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           activeColor: Colors.white,
           tabBackgroundColor: const Color.fromARGB(255, 53, 129, 56),
-          gap: 5,
+          gap: 10,
           padding: const EdgeInsets.all(15),
           tabs: const [
             GButton(
