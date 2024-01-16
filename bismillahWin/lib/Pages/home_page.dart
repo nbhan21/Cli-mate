@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
     const pageNews(),
 
     //Page map
-    const pageClimate(),
+    pageClimate(),
 
     //Page profile
     const pageProfile(),
