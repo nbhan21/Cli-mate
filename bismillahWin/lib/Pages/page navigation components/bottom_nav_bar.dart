@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -31,7 +32,7 @@ class bottomNavBar extends StatelessWidget {
               text: 'News',
               ),
             GButton(
-              icon: Icons.map,
+              icon: Icons.pin_drop,
               text: 'Cli-mate',
               ),
             GButton(

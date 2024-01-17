@@ -116,7 +116,7 @@ class _pageProfileState extends State<pageProfile> {
         )),
         toolbarHeight: 75,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
-        elevation: 10,
+        // elevation: 10,
       ),
 
       //mendapatkan data user dari firebase

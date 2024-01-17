@@ -25,7 +25,7 @@ class _pageNewsState extends State<pageNews> {
         // backgroundColor: Colors.transparent,
         // shadowColor: Colors.transparent,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
-        elevation: 10,
+        // elevation: 10,
       ), 
 
       body: Column(

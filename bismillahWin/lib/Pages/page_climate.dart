@@ -1,3 +1,7 @@
+import 'package:climate/Pages/climate%20page%20components/disease.dart';
+import 'package:climate/Pages/climate%20page%20components/extreme_weather.dart';
+import 'package:climate/Pages/climate%20page%20components/humidity.dart';
+import 'package:climate/Pages/climate%20page%20components/temperature.dart';
 import 'package:climate/Pages/page%20components/consts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +11,7 @@ import 'package:weather/weather.dart';
 
 class pageClimate extends StatefulWidget {
   pageClimate({super.key});
-  
+
   @override
   State<pageClimate> createState() => _pageClimateState();
 }
@@ -48,10 +52,10 @@ class _pageClimateState extends State<pageClimate> {
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        
+
         // Search Bar
         title: Container(
-          margin: EdgeInsets.only(bottom: 10, top: 10),
+          margin: const EdgeInsets.only(bottom: 10, top: 10),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20.0),
             child: TextField(
@@ -70,121 +74,106 @@ class _pageClimateState extends State<pageClimate> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 hintText: 'Search City',
+                hintStyle: const TextStyle(fontFamily: 'PlusJakartaSans'),
                 fillColor: const Color.fromARGB(255, 255, 255, 255),
                 filled: true,
-                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 25),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 25),
                 suffixIcon: IconButton(
                   onPressed: () {
                     _getWeather(_textController.text);
                   },
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                 ),
               ),
             ),
           ),
         ),
 
-         // Add the horizontal scroll content under 'Search City'
+        // Add the horizontal scroll content under 'Search City'
+
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(50),
+          preferredSize: const Size.fromHeight(50),
           child: Container(
-            margin: EdgeInsets.only(bottom: 20),
+            margin: const EdgeInsets.only(bottom: 20),
             height: 100,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
+                // Location Info
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     child: Container(
                       width: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.white
+                        color: const Color.fromARGB(255, 53, 129, 56),
                       ),
                       child: Center(
-                        child: Text('lisview 1')
+                        child: _locationHeader(),
                       ),
                     ),
                   ),
-                  ),
+                ),
+
+                // weather info
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     child: Container(
                       width: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.white
+                        color: const Color.fromARGB(255, 53, 129, 56),
                       ),
                       child: Center(
-                        child: Text(
-                          'ListView 1',
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.black
-                          ),
-                        ),
+                        child: _weatherIcon(),
                       ),
                     ),
                   ),
-                  ),
+                ),
+
+                // extra info
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     child: Container(
                       width: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.white
+                        color: const Color.fromARGB(255, 53, 129, 56),
                       ),
                       child: Center(
-                        child: Text(
-                          'ListView 1',
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.black
-                          ),
-                        ),
+                        child: _extraInfo(),
                       ),
                     ),
                   ),
-                  ),
+                ),
               ],
             ),
           ),
         ),
-        
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-          ),
-        ),
         toolbarHeight: 150,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
-        elevation: 10,
-
       ),
-      body: _buildUI(),
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height - 323,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 42, 105, 45),
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20)),
+            ),
+            child: _buildUI(),
+          ),
+        ],
+      ),
     );
   }
-
-  // body: const Column(
-  //   mainAxisAlignment: MainAxisAlignment.center,
-  //   children: [
-  //     Center( //ini nanti diganti lagi
-  //       //padding: EdgeInsets.symmetric(horizontal: 25.0),
-  //       child: Text('Coming Soon',
-  //       textAlign: TextAlign.center,
-  //       style: TextStyle(
-  //         fontFamily: 'PlusJakartaSans',
-  //         fontSize: 28,
-  //         fontWeight: FontWeight.w700),
-  //       ),
-  //     ),
-  //   ]
-  // )
 
   Widget _buildUI() {
     if (_weather == null) {
@@ -192,29 +181,24 @@ class _pageClimateState extends State<pageClimate> {
         child: CircularProgressIndicator(),
       );
     }
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          _temperatureIndicator(),
-          SizedBox(height: 10),
-          _rainfallIndicator(),
-          SizedBox(height: 10),
-          _extremeWeatherIndicator(),
-          SizedBox(height: 10),
-          _healthRiskIndicator(),
-          SizedBox(height: 10),
-          
-          _dateTimeInfo(),
-          SizedBox(height: 10),
-          _weatherIcon(),
-          SizedBox(height: 10),
-          _currentTemp(),
-          SizedBox(height: 10),
-          _extraInfo(),
-        ],
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 53, 129, 56),
+          borderRadius: BorderRadius.circular(20)),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _temperatureIndicator(),
+            _extremeWeatherIndicator(),
+            _healthRiskIndicator(),
+            _highHumidityIndicator(),
+            const SizedBox(height: 50,)
+          ],
+        ),
       ),
     );
   }
@@ -228,53 +212,316 @@ class _pageClimateState extends State<pageClimate> {
     double currentTemperatureAvg =
         (currentTemperatureMin! + currentTemperatureMax!) / 2;
     double averageTemperatureDingin =
-        27; // average temperature jakarta bulan januari - februari (demo)
+        20; // average temperature jakarta bulan januari - februari (demo) // nanti ganti jadi 27
     double averageTemperaturePanas =
-        29; //average temperature jakarta bulan maret - desember (demo)
+        28; //average temperature jakarta bulan maret - desember (demo)
 
     if (bulanInt <= 2) {
-      if (currentTemperatureAvg <= averageTemperatureDingin) {
-        return Text('Suhu stabil');
+      if (currentTemperatureAvg < averageTemperatureDingin) {
+        return Container();
       } else {
-        return Text('Suhu naik');
+        return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const tempPage()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            CupertinoIcons.thermometer_sun,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Temperature is Abnormal",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
       }
     } else if (bulanInt > 2) {
-      if (currentTemperatureAvg <= averageTemperaturePanas) {
-        return Text('Suhu stabil');
+      if (currentTemperatureAvg < averageTemperaturePanas) {
+        return Container();
       } else {
-        return Text('Suhu naik');
+        return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const tempPage()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            CupertinoIcons.thermometer_sun,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Temperature is Abnormal",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
       }
     } else
-      return Text("");
-
-    // if (currentTemperatureAvg > averageTemperature){
-    //   return Text('Suhu naik');
-    // } else{
-    //   return Text('Suhu turun');
-    // }
-  }
-
-  Widget _rainfallIndicator() {
-    // double? currentRainfall = _weather?.;
-    // return Text(currentRainfall.toString());
-    double currentRainfall = 500; // data untuk demo
-    double averageRainfall = 100; // data untuk demo
-
-    if (currentRainfall < averageRainfall) {
-      return Text("");
-    } else {
-      return Text('Peningkatan curah hujan');
-    }
+      return Container();
   }
 
   Widget _extremeWeatherIndicator() {
     String? currentWeather = _weather?.weatherMain;
 
     if (currentWeather.toString().toLowerCase().contains('thunderstorm') ||
-        currentWeather.toString().toLowerCase().contains('storm')) {
-      return Text('Cuaca Ekstrim');
+        currentWeather.toString().toLowerCase().contains('storm') ||
+        currentWeather.toString().toLowerCase().contains('clouds')
+        ) {
+          // nanti ganti jadi storm
+      return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const extremeWeather()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            CupertinoIcons.cloud_sun_rain,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 250,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "On-Going Extreme Weather",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
     } else {
-      return Text("");
+      return Container();
     }
   }
 
@@ -292,23 +539,319 @@ class _pageClimateState extends State<pageClimate> {
 
     if (bulanInt <= 2) {
       if (currentTemperatureAvg > maxTempDingin &&
-          currentWeather.toString().toLowerCase().contains('rain')) {
-        return Text('Peningkatan resiko penyakit');
+          currentWeather.toString().toLowerCase().contains('rain') ||
+            currentWeather.toString().toLowerCase().contains('haze') ||
+            currentWeather.toString().toLowerCase().contains('clouds')) {
+                // nanti ganti jadi storm, hapus clouds
+        return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const disease()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            CupertinoIcons.heart_slash,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 250,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Increasing Risk of Diseases",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
       } else {
-        return Text("");
+        return Container();
       }
     } else if (bulanInt > 2) {
       if (currentTemperatureAvg > maxTempPanas &&
-          currentWeather.toString().toLowerCase().contains('rain')) {
-        return Text('Peningkatan resiko penyakit');
+          currentWeather.toString().toLowerCase().contains('rain') ||
+              currentWeather.toString().toLowerCase().contains('storm')) {
+        return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const disease()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            CupertinoIcons.heart_slash,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 250,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Increasing Risk of Diseases",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
       } else {
-        return Text("");
+        return Container();
       }
     } else
-      return Text("");
+      return Container();
+  }
+
+  Widget _highHumidityIndicator() {
+    double? currentHumidity = _weather?.humidity;
+
+    if (currentHumidity! > 50) { // nanti ganti jadi 80
+      return Column(
+          children: [
+            // SizedBox(height: 10,),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const humidity()));
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  // vertical: 20,
+                ),
+                // color: Color.fromARGB(255, 53, 129, 56),
+                height: 160,
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: <Widget>[
+                    Container(
+                      height: 136,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: const Color.fromARGB(255, 232, 232, 238),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(76, 0, 0, 0),
+                              offset: Offset(
+                                5.0,
+                                5.0,
+                              ),
+                              blurRadius: 10.0,
+                              spreadRadius: 2.0,
+                            )
+                          ]),
+                    ),
+                    Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 62),
+                          width: 100,
+                          height: 160,
+                          child: const Icon(
+                            Icons.air,
+                            color: Color.fromARGB(255, 0, 71, 2),
+                            size: 60,
+                          ),
+                        )),
+                    Positioned(
+                        bottom: 0,
+                        left: 0,
+                        child: SizedBox(
+                          height: 135,
+                          width: 200,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  "Unsafe Level of Humidity",
+                                  style: TextStyle(
+                                    fontFamily: 'PlusJakartaSans',
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                                decoration: const BoxDecoration(
+                                    color: Color.fromARGB(255, 0, 71, 2),
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(22),
+                                        topRight: Radius.circular(22))),
+                                child: const Text(
+                                  "See Details",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'PlusJakartaSans',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+    } else {
+      return Container();
+    }
   }
 
   Widget _locationHeader() {
+    if (_weather == null) {
+      return const Text("");
+    }
     DateTime now = _weather!.date!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -316,17 +859,19 @@ class _pageClimateState extends State<pageClimate> {
       children: [
         Text(
           _weather?.areaName ?? "",
-          style: TextStyle(
-            fontFamily: 'PlusJakartaFont',
+          style: const TextStyle(
+            fontFamily: 'PlusJakartaSans',
             fontSize: 20,
             fontWeight: FontWeight.w500,
+            color: Colors.white,
           ),
         ),
         Text(
           DateFormat("h:mm a").format(now),
-          style: TextStyle(
-            fontFamily: 'PlusJakartaFont',
+          style: const TextStyle(
+            fontFamily: 'PlusJakartaSans',
             fontSize: 20,
+            color: Colors.white,
             // fontWeight: FontWeight.w500,
           ),
         ),
@@ -334,84 +879,113 @@ class _pageClimateState extends State<pageClimate> {
     );
   }
 
-  Widget _dateTimeInfo() {
-    DateTime now = _weather!.date!;
-    return Column(
+  // Widget _dateTimeInfo() {
+  //   if (_weather == null) {
+  //     return Text("");
+  //   }
+  //   DateTime now = _weather!.date!;
+  //   return Column(
+  //     children: [
+  //       Text(
+  //         DateFormat("h:mm a").format(now),
+  //         style: TextStyle(
+  //           fontFamily: 'PlusJakartaFont',
+  //           fontSize: 35,
+  //           // fontWeight: FontWeight.w500,
+  //         ),
+  //       ),
+  //       const SizedBox(
+  //         height: 10,
+  //       ),
+  //       Row(
+  //         mainAxisSize: MainAxisSize.max,
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         crossAxisAlignment: CrossAxisAlignment.center,
+  //         children: [
+  //           Text(
+  //             "  ${DateFormat("d.M.y").format(now)}",
+  //             style: TextStyle(
+  //               fontFamily: 'PlusJakartaFont',
+  //               // fontSize: 35,
+  //               fontWeight: FontWeight.w400,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  Widget _weatherIcon() {
+    if (_weather == null) {
+      return const Text("");
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          DateFormat("h:mm a").format(now),
-          style: TextStyle(
-            fontFamily: 'PlusJakartaFont',
-            fontSize: 35,
-            // fontWeight: FontWeight.w500,
+          "${_weather?.temperature?.celsius?.toStringAsFixed(0)}° C",
+          style: const TextStyle(
+            color: Colors.white,
+            fontFamily: 'PlusJakartaSans',
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
+        Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "  ${DateFormat("d.M.y").format(now)}",
-              style: TextStyle(
-                fontFamily: 'PlusJakartaFont',
-                // fontSize: 35,
-                fontWeight: FontWeight.w400,
-              ),
+            Container(
+              padding: const EdgeInsets.all(30),
+              height: MediaQuery.sizeOf(context).height * 0.06,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "http://openweathermap.org/img/wn/${_weather?.weatherIcon}@4x.png"))),
             ),
+            Container(
+              child: Text(
+                _weather?.weatherDescription ?? "",
+                style: const TextStyle(
+                  fontFamily: 'PlusJakartaSans',
+                  color: Colors.white,
+                  fontSize: 10,
+                  // fontSize: 35,
+                  // fontWeight: FontWeight.w700,
+                ),
+              ),
+            )
           ],
         ),
       ],
     );
   }
 
-  Widget _weatherIcon() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          height: MediaQuery.sizeOf(context).height * 0.20,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "http://openweathermap.org/img/wn/${_weather?.weatherIcon}@4x.png"))),
-        ),
-        Text(
-          _weather?.weatherDescription ?? "",
-          style: TextStyle(
-            fontFamily: 'PlusJakartaFont',
-            // fontSize: 35,
-            // fontWeight: FontWeight.w700,
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _currentTemp() {
-    return Text(
-      "${_weather?.temperature?.celsius?.toStringAsFixed(0)}° C",
-      style: TextStyle(
-        color: Colors.black,
-        fontFamily: 'PlusJakartaFont',
-        fontSize: 90,
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
+  // Widget _currentTemp() {
+  //   if (_weather == null) {
+  //     return Text("");
+  //   }
+  //   return Text(
+  //     "${_weather?.temperature?.celsius?.toStringAsFixed(0)}° C",
+  //     style: TextStyle(
+  //       color: Colors.black,
+  //       fontFamily: 'PlusJakartaFont',
+  //       fontSize: 90,
+  //       fontWeight: FontWeight.w500,
+  //     ),
+  //   );
+  // }
 
   Widget _extraInfo() {
+    if (_weather == null) {
+      return const Text("");
+    }
     return Container(
       width: MediaQuery.sizeOf(context).width * 0.80,
       height: MediaQuery.sizeOf(context).height * 0.15,
-      decoration: BoxDecoration(
-          color: Color.fromARGB(255, 42, 105, 45),
-          borderRadius: BorderRadius.circular(10)),
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -424,18 +998,18 @@ class _pageClimateState extends State<pageClimate> {
             children: [
               Text(
                 "Max: ${_weather?.tempMax?.celsius?.toStringAsFixed(0)}° C",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontFamily: 'PlusJakartaFont',
-                  fontSize: 15,
+                  fontFamily: 'PlusJakartaSans',
+                  fontSize: 13,
                 ),
               ),
               Text(
                 "Min: ${_weather?.tempMin?.celsius?.toStringAsFixed(0)}° C",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontFamily: 'PlusJakartaFont',
-                  fontSize: 15,
+                  fontFamily: 'PlusJakartaSans',
+                  fontSize: 13,
                 ),
               ),
             ],
@@ -447,18 +1021,18 @@ class _pageClimateState extends State<pageClimate> {
             children: [
               Text(
                 "Wind: ${_weather?.windSpeed?.toStringAsFixed(0)}m/s",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontFamily: 'PlusJakartaFont',
-                  fontSize: 15,
+                  fontFamily: 'PlusJakartaSans',
+                  fontSize: 12,
                 ),
               ),
               Text(
                 "Humidity: ${_weather?.humidity?.toStringAsFixed(0)}%",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontFamily: 'PlusJakartaFont',
-                  fontSize: 15,
+                  fontFamily: 'PlusJakartaSans',
+                  fontSize: 12,
                 ),
               ),
             ],
