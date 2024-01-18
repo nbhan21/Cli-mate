@@ -112,9 +112,13 @@ Cli-mate is a mobile application that passionately delivers information and data
    <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/profile_page.png" width="150">
 
 ### BackEnd
-1. auth using firebase
+1. Auth using firebase
 
    <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/firebase.jpg" width="600">
+
+2. Firestore database
+
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/firebase(1).png" width="600">
 
 
 ## How to Use
