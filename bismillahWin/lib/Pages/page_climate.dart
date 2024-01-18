@@ -8,31 +8,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
-
+ 
 class pageClimate extends StatefulWidget {
   pageClimate({super.key});
-
+ 
   @override
   State<pageClimate> createState() => _pageClimateState();
 }
-
+ 
 class _pageClimateState extends State<pageClimate> {
   final WeatherFactory _wf = WeatherFactory(OPENWEATHER_API_KEY);
   Weather? _weather;
   final _textController = TextEditingController();
-
+ 
   @override
   void dispose() {
     _textController.dispose();
     super.dispose();
   }
-
+ 
   @override
   void initState() {
     super.initState();
     _getWeather("Jakarta"); // Default city
   }
-
+ 
   // Function to get weather data based on city name
   Future<void> _getWeather(String city) async {
     try {
@@ -45,14 +45,14 @@ class _pageClimateState extends State<pageClimate> {
       // Handle error as needed (show a message to the user, etc.)
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
+ 
         // Search Bar
         title: Container(
           margin: const EdgeInsets.only(bottom: 10, top: 10),
@@ -89,9 +89,9 @@ class _pageClimateState extends State<pageClimate> {
             ),
           ),
         ),
-
+ 
         // Add the horizontal scroll content under 'Search City'
-
+ 
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: Container(
@@ -116,7 +116,7 @@ class _pageClimateState extends State<pageClimate> {
                     ),
                   ),
                 ),
-
+ 
                 // weather info
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -133,7 +133,7 @@ class _pageClimateState extends State<pageClimate> {
                     ),
                   ),
                 ),
-
+ 
                 // extra info
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -177,7 +177,7 @@ class _pageClimateState extends State<pageClimate> {
       ),
     );
   }
-
+ 
   Widget _buildUI() {
     if (_weather == null) {
       return const Center(
@@ -217,7 +217,7 @@ class _pageClimateState extends State<pageClimate> {
       ),
     );
   }
-
+ 
   Widget _temperatureIndicator() {
     DateTime now = _weather!.date!;
     String bulan = DateFormat("M").format(now);
@@ -230,7 +230,7 @@ class _pageClimateState extends State<pageClimate> {
         20; // average temperature jakarta bulan januari - februari (demo) // nanti ganti jadi 27
     double averageTemperaturePanas =
         28; //average temperature jakarta bulan maret - desember (demo)
-
+ 
     if (bulanInt <= 2) {
       if (currentTemperatureAvg < averageTemperatureDingin) {
         return Container();
@@ -287,7 +287,7 @@ class _pageClimateState extends State<pageClimate> {
                         left: 0,
                         child: SizedBox(
                           height: 135,
-                          width: 250,
+                          width: 200,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -295,7 +295,7 @@ class _pageClimateState extends State<pageClimate> {
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
-                                  "Unsafe Temperature Warning",
+                                  "Temperature is Abnormal",
                                   style: TextStyle(
                                     fontFamily: 'PlusJakartaSans',
                                     color: Colors.black,
@@ -394,7 +394,7 @@ class _pageClimateState extends State<pageClimate> {
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
-                                  "Unsafe Temperature Warning",
+                                  "Temperature is Abnormal",
                                   style: TextStyle(
                                     fontFamily: 'PlusJakartaSans',
                                     color: Colors.black,
@@ -432,10 +432,10 @@ class _pageClimateState extends State<pageClimate> {
     } else
       return Container();
   }
-
+ 
   Widget _extremeWeatherIndicator() {
     String? currentWeather = _weather?.weatherMain;
-
+ 
     if (currentWeather != null
       // currentWeather.toString().toLowerCase().contains('thunderstorm') ||
       //   currentWeather.toString().toLowerCase().contains('storm') ||
@@ -540,7 +540,7 @@ class _pageClimateState extends State<pageClimate> {
       return Container();
     }
   }
-
+ 
   Widget _healthRiskIndicator() {
     DateTime now = _weather!.date!;
     String bulan = DateFormat("M").format(now);
@@ -552,7 +552,7 @@ class _pageClimateState extends State<pageClimate> {
     double maxTempPanas = 32; //data untuk demo
     double maxTempDingin = 30; //data untuk demo
     String? currentWeather = _weather?.weatherMain;
-
+ 
     if (bulanInt <= 2) {
       if (currentTemperatureAvg != null){
       //currentTemperatureAvg > maxTempDingin &&
@@ -761,10 +761,10 @@ class _pageClimateState extends State<pageClimate> {
     } else
       return Container();
   }
-
+ 
   Widget _highHumidityIndicator() {
     double? currentHumidity = _weather?.humidity;
-
+ 
     if (currentHumidity! > 50) { // nanti ganti jadi 80
       return Column(
           children: [
@@ -864,7 +864,7 @@ class _pageClimateState extends State<pageClimate> {
       return Container();
     }
   }
-
+ 
   Widget _locationHeader() {
     if (_weather == null) {
       return const Text("");
@@ -895,7 +895,7 @@ class _pageClimateState extends State<pageClimate> {
       ],
     );
   }
-
+ 
   // Widget _dateTimeInfo() {
   //   if (_weather == null) {
   //     return Text("");
@@ -932,7 +932,7 @@ class _pageClimateState extends State<pageClimate> {
   //     ],
   //   );
   // }
-
+ 
   Widget _weatherIcon() {
     if (_weather == null) {
       return const Text("");
@@ -980,7 +980,7 @@ class _pageClimateState extends State<pageClimate> {
       ],
     );
   }
-
+ 
   // Widget _currentTemp() {
   //   if (_weather == null) {
   //     return Text("");
@@ -995,7 +995,7 @@ class _pageClimateState extends State<pageClimate> {
   //     ),
   //   );
   // }
-
+ 
   Widget _extraInfo() {
     if (_weather == null) {
       return const Text("");
