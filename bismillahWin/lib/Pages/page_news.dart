@@ -83,12 +83,17 @@ class _pageNewsState extends State<pageNews> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/1.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -123,19 +128,24 @@ class _pageNewsState extends State<pageNews> {
                   ),
                 ),
               ),
-              Card(
+              Card( //berita 2
                 elevation: 4,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/2.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -170,19 +180,24 @@ class _pageNewsState extends State<pageNews> {
                   ),
                 ),
               ),
-              Card(
+              Card( //berita 3
                 elevation: 4,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/3.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -217,19 +232,24 @@ class _pageNewsState extends State<pageNews> {
                   ),
                 ),
               ),
-              Card(
+              Card( //berita 4
                 elevation: 4,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/4.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -262,19 +282,24 @@ class _pageNewsState extends State<pageNews> {
                   ),
                 ),
               ),
-              Card(
+              Card( //berita 5
                 elevation: 4,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/5.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -307,19 +332,24 @@ class _pageNewsState extends State<pageNews> {
                   ),
                 ),
               ),
-              Card(
+              Card( //berita 6
                 elevation: 4,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.network(),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/6.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -359,13 +389,17 @@ class _pageNewsState extends State<pageNews> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 80,
-                        width: 100,
-                        // child: Image.asset('../assets/news_images/7.jpeg',
-                        // fit: BoxFit.cover),
+                      Padding(
+                        padding: EdgeInsets.only(top: 23),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Image(
+                            image: AssetImage('lib/Pages/page components/news_assets/7.jpeg'),
+                            fit: BoxFit.cover),
+                        ),
                       ),
-                      SizedBox(width: 20),
+                      SizedBox(width: 10),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
