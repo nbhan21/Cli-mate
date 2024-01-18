@@ -8,31 +8,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:weather/weather.dart';
-
+ 
 class pageClimate extends StatefulWidget {
   pageClimate({super.key});
-
+ 
   @override
   State<pageClimate> createState() => _pageClimateState();
 }
-
+ 
 class _pageClimateState extends State<pageClimate> {
   final WeatherFactory _wf = WeatherFactory(OPENWEATHER_API_KEY);
   Weather? _weather;
   final _textController = TextEditingController();
-
+ 
   @override
   void dispose() {
     _textController.dispose();
     super.dispose();
   }
-
+ 
   @override
   void initState() {
     super.initState();
     _getWeather("Jakarta"); // Default city
   }
-
+ 
   // Function to get weather data based on city name
   Future<void> _getWeather(String city) async {
     try {
@@ -45,14 +45,14 @@ class _pageClimateState extends State<pageClimate> {
       // Handle error as needed (show a message to the user, etc.)
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 232, 232, 238),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-
+ 
         // Search Bar
         title: Container(
           margin: const EdgeInsets.only(bottom: 10, top: 10),
@@ -89,9 +89,9 @@ class _pageClimateState extends State<pageClimate> {
             ),
           ),
         ),
-
+ 
         // Add the horizontal scroll content under 'Search City'
-
+ 
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
           child: Container(
@@ -116,7 +116,7 @@ class _pageClimateState extends State<pageClimate> {
                     ),
                   ),
                 ),
-
+ 
                 // weather info
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -133,7 +133,7 @@ class _pageClimateState extends State<pageClimate> {
                     ),
                   ),
                 ),
-
+ 
                 // extra info
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -157,52 +157,67 @@ class _pageClimateState extends State<pageClimate> {
         toolbarHeight: 150,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height - 323,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 42, 105, 45),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 0),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height - 323,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 42, 105, 45),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+              ),
+              child: _buildUI(),
             ),
-            child: _buildUI(),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-
+ 
   Widget _buildUI() {
     if (_weather == null) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 53, 129, 56),
-          borderRadius: BorderRadius.circular(20)),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _temperatureIndicator(),
-            _extremeWeatherIndicator(),
-            _healthRiskIndicator(),
-            _highHumidityIndicator(),
-            const SizedBox(height: 50,)
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            color: Color.fromARGB(255, 69, 129, 71),
+            borderRadius: BorderRadius.circular(20)),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20,),
+              const Text('Please note that some information might be inaccurate since Cli-mate is still in early development state\n(For Demo Only)', 
+              style: TextStyle(
+                fontFamily: 'PlusJakartaFont',
+                color: Colors.white,
+                fontSize: 7
+              ),
+              textAlign: TextAlign.center,
+              ),
+              _temperatureIndicator(),
+              _extremeWeatherIndicator(),
+              _healthRiskIndicator(),
+              _highHumidityIndicator(),
+              const SizedBox(height: 50,)
+            ],
+          ),
         ),
       ),
     );
   }
-
+ 
   Widget _temperatureIndicator() {
     DateTime now = _weather!.date!;
     String bulan = DateFormat("M").format(now);
@@ -215,7 +230,7 @@ class _pageClimateState extends State<pageClimate> {
         20; // average temperature jakarta bulan januari - februari (demo) // nanti ganti jadi 27
     double averageTemperaturePanas =
         28; //average temperature jakarta bulan maret - desember (demo)
-
+ 
     if (bulanInt <= 2) {
       if (currentTemperatureAvg < averageTemperatureDingin) {
         return Container();
@@ -417,13 +432,14 @@ class _pageClimateState extends State<pageClimate> {
     } else
       return Container();
   }
-
+ 
   Widget _extremeWeatherIndicator() {
     String? currentWeather = _weather?.weatherMain;
-
-    if (currentWeather.toString().toLowerCase().contains('thunderstorm') ||
-        currentWeather.toString().toLowerCase().contains('storm') ||
-        currentWeather.toString().toLowerCase().contains('clouds')
+ 
+    if (currentWeather != null
+      // currentWeather.toString().toLowerCase().contains('thunderstorm') ||
+      //   currentWeather.toString().toLowerCase().contains('storm') ||
+      //   currentWeather.toString().toLowerCase().contains('clouds')
         ) {
           // nanti ganti jadi storm
       return Column(
@@ -524,7 +540,7 @@ class _pageClimateState extends State<pageClimate> {
       return Container();
     }
   }
-
+ 
   Widget _healthRiskIndicator() {
     DateTime now = _weather!.date!;
     String bulan = DateFormat("M").format(now);
@@ -536,12 +552,13 @@ class _pageClimateState extends State<pageClimate> {
     double maxTempPanas = 32; //data untuk demo
     double maxTempDingin = 30; //data untuk demo
     String? currentWeather = _weather?.weatherMain;
-
+ 
     if (bulanInt <= 2) {
-      if (currentTemperatureAvg > maxTempDingin &&
-          currentWeather.toString().toLowerCase().contains('rain') ||
-            currentWeather.toString().toLowerCase().contains('haze') ||
-            currentWeather.toString().toLowerCase().contains('clouds')) {
+      if (currentTemperatureAvg != null){
+      //currentTemperatureAvg > maxTempDingin &&
+      //     currentWeather.toString().toLowerCase().contains('rain') ||
+      //       currentWeather.toString().toLowerCase().contains('haze') ||
+      //       currentWeather.toString().toLowerCase().contains('rain')) {
                 // nanti ganti jadi storm, hapus clouds
         return Column(
           children: [
@@ -744,10 +761,10 @@ class _pageClimateState extends State<pageClimate> {
     } else
       return Container();
   }
-
+ 
   Widget _highHumidityIndicator() {
     double? currentHumidity = _weather?.humidity;
-
+ 
     if (currentHumidity! > 50) { // nanti ganti jadi 80
       return Column(
           children: [
@@ -847,7 +864,7 @@ class _pageClimateState extends State<pageClimate> {
       return Container();
     }
   }
-
+ 
   Widget _locationHeader() {
     if (_weather == null) {
       return const Text("");
@@ -878,7 +895,7 @@ class _pageClimateState extends State<pageClimate> {
       ],
     );
   }
-
+ 
   // Widget _dateTimeInfo() {
   //   if (_weather == null) {
   //     return Text("");
@@ -915,7 +932,7 @@ class _pageClimateState extends State<pageClimate> {
   //     ],
   //   );
   // }
-
+ 
   Widget _weatherIcon() {
     if (_weather == null) {
       return const Text("");
@@ -963,7 +980,7 @@ class _pageClimateState extends State<pageClimate> {
       ],
     );
   }
-
+ 
   // Widget _currentTemp() {
   //   if (_weather == null) {
   //     return Text("");
@@ -978,7 +995,7 @@ class _pageClimateState extends State<pageClimate> {
   //     ),
   //   );
   // }
-
+ 
   Widget _extraInfo() {
     if (_weather == null) {
       return const Text("");
