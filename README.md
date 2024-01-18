@@ -44,9 +44,12 @@ A significant challenge currently faced is the lack of awareness among many comm
 <br/>
 <br/>
 
-### Targeted SDG's
+### 🎯Targeted SDG's
 
+<img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/E_PRINT_03.jpg" width="350"> |<img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/E_PRINT_13.jpg" width="350">
+--- | --- | 
 
+</div>
 
 <br/>
 <br/>
@@ -74,30 +77,51 @@ Cli-mate is a mobile application that passionately delivers information and data
 
 ## Product Screenshots
 
-
 ### FrontEnd
 1. Landing page
    
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/landing_page.png" width="100">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/landing_page.png" width="150">
    
 2. Login page
 
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(1).png" width="100">
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(2).png" width="100">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(1).png" width="150">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/login_page(2).png" width="150">
    
 3. Register Page
 
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page(2).png" width="100">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page.png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/register_page(2).png" width="150">
    
-5. Forgot password page
+4. Forgot password page
   
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/forgot%20password_page.png" width="100">
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/forgot%20password_page.png" width="150">
    
-6. Home page (Page news, Page map, Page profile)
+5. Home page (Page news, Page climate, Page profile)
+   #### 5.1 Page News
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/news_page.png" width="150">
+   <br/>
+
    
-   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/home%20page%20-%20news_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/map_page.png" width="100"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/profile_page.png" width="100">
+   #### 5.2 Page Climate
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_page(1).png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_page(2).png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_page(3).png" width="150">
+   #### 5.2.1 Subpage Climate
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_subpage(1).png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_subpage(2).png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_subpage(3).png" width="150"> <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/climate_subpage(4).png" width="150">
+   <br/>
+
+   
+   #### 5.3 Page Profile
+   <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/profile_page.png" width="150">
 
 ### BackEnd
 1. auth using firebase
 
    <img src="https://github.com/nbhan21/Cli-mate/blob/main/assets/screenshot/firebase.jpg" width="600">
+
+
+## How to Use
+
+1. Do a git clone of this repository by typing `git clone https://github.com/nbhan21/Cli-mate.git`.
+2. After that, open Visual Studio Code and open the cloned repository folder.
+3. Next, open a new terminal in Visual Studio Code and type `flutter pub get` to download all packages in flutter.
+4. After that, open the `main.dart` file which is in the `lib/Pages/` folder.
+5. Open the **DEBUG CONSOLE** section, then press `F5` to run the application.
+6. Then register on the **Cli-mate** application and the application can be run.
