@@ -157,20 +157,23 @@ class _pageClimateState extends State<pageClimate> {
         toolbarHeight: 150,
         backgroundColor: const Color.fromARGB(255, 42, 105, 45),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height - 323,
-            width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 42, 105, 45),
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 0),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height - 323,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 42, 105, 45),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
+              ),
+              child: _buildUI(),
             ),
-            child: _buildUI(),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -181,23 +184,35 @@ class _pageClimateState extends State<pageClimate> {
         child: CircularProgressIndicator(),
       );
     }
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 53, 129, 56),
-          borderRadius: BorderRadius.circular(20)),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _temperatureIndicator(),
-            _extremeWeatherIndicator(),
-            _healthRiskIndicator(),
-            _highHumidityIndicator(),
-            const SizedBox(height: 50,)
-          ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            color: Color.fromARGB(255, 53, 129, 56),
+            borderRadius: BorderRadius.circular(20)),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20,),
+              const Text('Please note that some information might be inaccurate since Cli-mate is still in early development state\n(For Demo Only)', 
+              style: TextStyle(
+                fontFamily: 'PlusJakartaFont',
+                color: Colors.white,
+                fontSize: 7
+              ),
+              textAlign: TextAlign.center,
+              ),
+              _temperatureIndicator(),
+              _extremeWeatherIndicator(),
+              _healthRiskIndicator(),
+              _highHumidityIndicator(),
+              const SizedBox(height: 50,)
+            ],
+          ),
         ),
       ),
     );
@@ -272,7 +287,7 @@ class _pageClimateState extends State<pageClimate> {
                         left: 0,
                         child: SizedBox(
                           height: 135,
-                          width: 200,
+                          width: 250,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -280,7 +295,7 @@ class _pageClimateState extends State<pageClimate> {
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
-                                  "Temperature is Abnormal",
+                                  "Unsafe Temperature Warning",
                                   style: TextStyle(
                                     fontFamily: 'PlusJakartaSans',
                                     color: Colors.black,
@@ -379,7 +394,7 @@ class _pageClimateState extends State<pageClimate> {
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Text(
-                                  "Temperature is Abnormal",
+                                  "Unsafe Temperature Warning",
                                   style: TextStyle(
                                     fontFamily: 'PlusJakartaSans',
                                     color: Colors.black,
@@ -421,9 +436,10 @@ class _pageClimateState extends State<pageClimate> {
   Widget _extremeWeatherIndicator() {
     String? currentWeather = _weather?.weatherMain;
 
-    if (currentWeather.toString().toLowerCase().contains('thunderstorm') ||
-        currentWeather.toString().toLowerCase().contains('storm') ||
-        currentWeather.toString().toLowerCase().contains('clouds')
+    if (currentWeather != null
+      // currentWeather.toString().toLowerCase().contains('thunderstorm') ||
+      //   currentWeather.toString().toLowerCase().contains('storm') ||
+      //   currentWeather.toString().toLowerCase().contains('clouds')
         ) {
           // nanti ganti jadi storm
       return Column(
@@ -538,10 +554,11 @@ class _pageClimateState extends State<pageClimate> {
     String? currentWeather = _weather?.weatherMain;
 
     if (bulanInt <= 2) {
-      if (currentTemperatureAvg > maxTempDingin &&
-          currentWeather.toString().toLowerCase().contains('rain') ||
-            currentWeather.toString().toLowerCase().contains('haze') ||
-            currentWeather.toString().toLowerCase().contains('clouds')) {
+      if (currentTemperatureAvg != null){
+      //currentTemperatureAvg > maxTempDingin &&
+      //     currentWeather.toString().toLowerCase().contains('rain') ||
+      //       currentWeather.toString().toLowerCase().contains('haze') ||
+      //       currentWeather.toString().toLowerCase().contains('rain')) {
                 // nanti ganti jadi storm, hapus clouds
         return Column(
           children: [
